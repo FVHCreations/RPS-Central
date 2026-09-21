@@ -11,7 +11,6 @@ import Foundation
 nonisolated struct SubApp: Identifiable, Hashable, Sendable {
     let id: String
     let name: String
-    let summary: String
     let symbolName: String
 }
 
@@ -19,7 +18,6 @@ nonisolated enum SubAppCatalog {
     static let flightLogging = SubApp(
         id: "flight-logging",
         name: "Flight logging",
-        summary: "Preflight checks, post-flight logs, and maintenance.",
         symbolName: "airplane"
     )
 

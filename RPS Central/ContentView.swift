@@ -15,6 +15,7 @@ struct ContentView: View {
                     destination(for: app)
                 }
         }
+        .tint(Color("BrandGreen"))
     }
 
     @ViewBuilder
@@ -23,11 +24,7 @@ struct ContentView: View {
         case SubAppCatalog.flightLogging.id:
             FlightLoggingView()
         default:
-            ContentUnavailableView(
-                app.name,
-                systemImage: app.symbolName,
-                description: Text("This sub-app is not available yet.")
-            )
+            ContentUnavailableView(app.name, systemImage: app.symbolName)
         }
     }
 }

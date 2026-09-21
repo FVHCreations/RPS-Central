@@ -23,14 +23,15 @@ final class RPS_CentralUITests: XCTestCase {
     }
 
     @MainActor
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    func testHubShowsLogoAndOpensFlightLogging() throws {
         let app = XCUIApplication()
         app.launch()
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // XCUIAutomation Documentation
-        // https://developer.apple.com/documentation/xcuiautomation
+        XCTAssertTrue(app.images["RootPulse Solutions"].waitForExistence(timeout: 5))
+        app.buttons["Flight logging"].tap()
+        XCTAssertTrue(app.staticTexts["Preflight checks"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Post-flight logs"].exists)
+        XCTAssertTrue(app.staticTexts["Maintenance"].exists)
     }
 
     @MainActor
