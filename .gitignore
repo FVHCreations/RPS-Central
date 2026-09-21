@@ -1,0 +1,141 @@
+# ========================
+# Xcode / iOS
+# ========================
+
+## User-specific settings (never commit these)
+xcuserdata/
+*.xcuserstate
+*.xcuserdatad/
+
+## Old Xcode leftovers (harmless to keep)
+*.xcscmblueprint
+*.xccheckout
+*.moved-aside
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+
+## Build products & derived data
+build/
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM
+*.dSYM.zip
+*.xcarchive
+/*.gcno
+
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+## Keep the project file and shared schemes; ignore junk inside .xcodeproj
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+
+# WorkspaceSettings is machine-specific
+**/xcshareddata/WorkspaceSettings.xcsettings
+
+# ========================
+# Swift Package Manager
+# ========================
+.build/
+.swiftpm/
+# Uncomment if you don't want local package checkouts in git:
+# Packages/
+# Package.pins
+# .swiftpm
+
+# For apps, committing Package.resolved is usually a good idea
+# (reproducible CI builds). Leave it tracked unless you have a reason not to.
+# Package.resolved
+
+# ========================
+# CocoaPods
+# ========================
+# Official guidance: decide as a team.
+# App projects often COMMIT Pods/ for reproducible builds.
+# Libraries often IGNORE Pods/.
+# NEVER ignore Podfile.lock.
+#
+# Pods/
+# *.xcworkspace
+
+# ========================
+# Carthage
+# ========================
+# Carthage/Checkouts
+Carthage/Build/
+
+# ========================
+# fastlane
+# ========================
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+fastlane/FastlaneRunner
+
+# ========================
+# Testing / coverage / tools
+# ========================
+*.xcresult
+coverage/
+*.lcov
+.swiftlint/
+# Injection for Xcode
+iOSInjectionProject/
+
+# ========================
+# Secrets & local config
+# ========================
+.env
+.env.*
+!.env.example
+*.mobileprovision
+*.p12
+*.cer
+*.der
+*.key
+AuthKey_*.p8
+GoogleService-Info.plist
+# (uncomment the line above only if that plist contains secrets you
+#  don't want in git; many teams DO commit the non-secret version)
+
+# ========================
+# macOS
+# ========================
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+*.icloud
+
+# ========================
+# Editors / IDE extras
+# ========================
+.idea/
+.vscode/
+*.swp
+*~
+*.bak
