@@ -9,13 +9,26 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("test")
+        NavigationStack {
+            HubView()
+                .navigationDestination(for: SubApp.self) { app in
+                    destination(for: app)
+                }
         }
-        .padding()
+    }
+
+    @ViewBuilder
+    private func destination(for app: SubApp) -> some View {
+        switch app.id {
+        case SubAppCatalog.flightLogging.id:
+            FlightLoggingView()
+        default:
+            ContentUnavailableView(
+                app.name,
+                systemImage: app.symbolName,
+                description: Text("This sub-app is not available yet.")
+            )
+        }
     }
 }
 
