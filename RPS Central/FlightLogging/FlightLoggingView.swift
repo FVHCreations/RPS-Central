@@ -10,7 +10,7 @@ import SwiftUI
 /// Entrance to the flight-logging sub-app.
 struct FlightLoggingView: View {
     private let columns = [
-        GridItem(.adaptive(minimum: 148, maximum: 190), spacing: 14)
+        GridItem(.adaptive(minimum: 150, maximum: 200), spacing: 16)
     ]
 
     private let areas: [FlightLogArea] = [
@@ -21,20 +21,25 @@ struct FlightLoggingView: View {
 
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: columns, alignment: .leading, spacing: 14) {
-                ForEach(areas) { area in
-                    AppTile(title: area.title, symbolName: area.symbolName)
+            GlassEffectContainer(spacing: 16) {
+                LazyVGrid(columns: columns, alignment: .leading, spacing: 16) {
+                    ForEach(areas) { area in
+                        AppTile(title: area.title, symbolName: area.symbolName)
+                            .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 28, style: .continuous))
+                    }
                 }
             }
             .padding(20)
             .frame(maxWidth: 900)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .background(Color("Paper").ignoresSafeArea())
+        .scrollEdgeEffectStyle(.soft, for: .top)
+        .background {
+            AppCanvas()
+                .backgroundExtensionEffect()
+        }
         .navigationTitle("Flight logging")
         .navigationBarTitleDisplayMode(.inline)
-        .toolbarBackground(Color("Paper"), for: .navigationBar)
-        .toolbarBackground(.visible, for: .navigationBar)
     }
 }
 

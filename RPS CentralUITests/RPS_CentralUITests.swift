@@ -28,10 +28,13 @@ final class RPS_CentralUITests: XCTestCase {
         app.launch()
 
         XCTAssertTrue(app.images["RootPulse Solutions"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["RPS Central"].exists)
         app.buttons["Flight logging"].tap()
-        XCTAssertTrue(app.staticTexts["Preflight checks"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["Post-flight logs"].exists)
-        XCTAssertTrue(app.staticTexts["Maintenance"].exists)
+
+        let preflight = app.descendants(matching: .any)["Preflight checks"]
+        XCTAssertTrue(preflight.waitForExistence(timeout: 5))
+        XCTAssertTrue(app.descendants(matching: .any)["Post-flight logs"].exists)
+        XCTAssertTrue(app.descendants(matching: .any)["Maintenance"].exists)
     }
 
     @MainActor

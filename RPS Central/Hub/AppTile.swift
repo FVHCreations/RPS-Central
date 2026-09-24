@@ -13,35 +13,42 @@ struct AppTile: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Color("BrandGreen")
-                .frame(height: 4)
+            Image(systemName: symbolName)
+                .font(.system(size: 18, weight: .semibold))
+                .foregroundStyle(Color("BrandGreen"))
+                .frame(width: 40, height: 40)
+                .background(Color("BrandGreen").opacity(0.16), in: Circle())
+                .accessibilityHidden(true)
 
-            VStack(alignment: .leading, spacing: 0) {
-                Image(systemName: symbolName)
-                    .font(.system(size: 26, weight: .medium))
-                    .foregroundStyle(Color("BrandGreen"))
-                    .accessibilityHidden(true)
-                Spacer(minLength: 12)
-                Text(title)
-                    .font(.system(size: 17, weight: .semibold))
-                    .foregroundStyle(.white)
-                    .multilineTextAlignment(.leading)
-            }
-            .padding(14)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            Spacer(minLength: 18)
+
+            Text(title)
+                .font(.headline)
+                .foregroundStyle(.primary)
+                .multilineTextAlignment(.leading)
         }
+        .padding(16)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .aspectRatio(1, contentMode: .fit)
-        .background(Color("Ink"))
-        .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
         .accessibilityElement(children: .combine)
     }
 }
 
-struct TileButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .scaleEffect(configuration.isPressed ? 0.97 : 1)
-            .opacity(configuration.isPressed ? 0.82 : 1)
-            .animation(.easeOut(duration: 0.12), value: configuration.isPressed)
+struct AppCanvas: View {
+    var body: some View {
+        ZStack(alignment: .top) {
+            Color("Paper")
+            LinearGradient(
+                colors: [
+                    Color("BrandGreen").opacity(0.20),
+                    Color("BrandGreen").opacity(0.05),
+                    Color.clear
+                ],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .frame(height: 360)
+        }
+        .ignoresSafeArea()
     }
 }
