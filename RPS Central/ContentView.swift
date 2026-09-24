@@ -8,14 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isMenuOpen = false
+
     var body: some View {
-        NavigationStack {
-            HubView()
-                .navigationDestination(for: SubApp.self) { app in
-                    destination(for: app)
-                }
+        ZStack {
+            NavigationStack {
+                HubView(isMenuOpen: $isMenuOpen)
+                    .navigationDestination(for: SubApp.self) { app in
+                        destination(for: app)
+                    }
+            }
+
+            if isMenuOpen {
+                AccountSidebar(isPresented: $isMenuOpen)
+                    .transition(.move(edge: .leading))
+            }
         }
         .tint(Color("BrandGreen"))
+        .animation(.smooth(duration: 0.28), value: isMenuOpen)
     }
 
     @ViewBuilder
@@ -31,4 +41,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environment(AppSession.previewSignedIn)
 }

@@ -23,18 +23,51 @@ final class RPS_CentralUITests: XCTestCase {
     }
 
     @MainActor
-    func testHubShowsLogoAndOpensFlightLogging() throws {
+    func testLoginFormAppearsOnLaunch() throws {
         let app = XCUIApplication()
+        app.launchArguments = ["-UITestingSignedOut"]
         app.launch()
 
-        XCTAssertTrue(app.images["RootPulse Solutions"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["RPS Central"].exists)
+        XCTAssertTrue(app.staticTexts["Sign in"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.textFields["Email"].exists)
+        XCTAssertTrue(app.secureTextFields["Password"].exists)
+        XCTAssertTrue(app.buttons["Sign in"].exists)
+        XCTAssertFalse(app.buttons["Flight logging"].exists)
+    }
+
+    @MainActor
+    func testHubShowsLogoAndOpensFlightLogging() throws {
+        let app = XCUIApplication()
+        app.launchArguments = ["-UITestingSignedIn"]
+        app.launch()
+
+        XCTAssertTrue(app.staticTexts["Welcome Pilot"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["pilot@rootpulse.example"].exists)
+        XCTAssertTrue(app.buttons["Account menu"].exists)
+        XCTAssertFalse(app.buttons["Sign out"].exists)
         app.buttons["Flight logging"].tap()
 
         let preflight = app.descendants(matching: .any)["Preflight checks"]
         XCTAssertTrue(preflight.waitForExistence(timeout: 5))
         XCTAssertTrue(app.descendants(matching: .any)["Post-flight logs"].exists)
         XCTAssertTrue(app.descendants(matching: .any)["Maintenance"].exists)
+    }
+
+    @MainActor
+    func testAccountMenuShowsSettingsAndSignsOut() throws {
+        let app = XCUIApplication()
+        app.launchArguments = ["-UITestingSignedIn"]
+        app.launch()
+
+        app.buttons["Account menu"].tap()
+        XCTAssertTrue(app.images["RootPulse Solutions"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.textFields["Display name"].exists)
+        XCTAssertTrue(app.buttons["Save"].exists)
+        XCTAssertTrue(app.buttons["Sign out"].exists)
+        XCTAssertTrue(app.staticTexts["pilot@rootpulse.example"].exists)
+
+        app.buttons["Sign out"].tap()
+        XCTAssertTrue(app.staticTexts["Sign in"].waitForExistence(timeout: 5))
     }
 
     @MainActor

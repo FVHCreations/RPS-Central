@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct RPS_CentralApp: App {
+    @State private var session = AppLaunch.makeSession()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
+                .environment(session)
         }
     }
 }

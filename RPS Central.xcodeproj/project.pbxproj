@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E48047743061EE5B0093013F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E48047733061EE510093013F /* .gitignore */; };
+		E48047823061F0010093013F /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = E48047813061F0010093013F /* Supabase */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E48047823061F0010093013F /* Supabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +120,7 @@
 			);
 			name = "RPS Central";
 			packageProductDependencies = (
+				E48047813061F0010093013F /* Supabase */,
 			);
 			productName = "RPS Central";
 			productReference = E48047463061EBAD0093013F /* RPS Central.app */;
@@ -201,6 +204,9 @@
 			);
 			mainGroup = E480473D3061EBAD0093013F;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				E48047803061F0010093013F /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E48047473061EBAD0093013F /* Products */;
 			projectDirPath = "";
@@ -577,6 +583,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E48047803061F0010093013F /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.55.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E48047813061F0010093013F /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E48047803061F0010093013F /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E480473E3061EBAD0093013F /* Project object */;
 }

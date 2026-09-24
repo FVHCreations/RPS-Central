@@ -34,6 +34,18 @@ struct AppTile: View {
     }
 }
 
+struct RootPulseMark: View {
+    var height: CGFloat = 28
+
+    var body: some View {
+        Image("RootPulseLogo")
+            .resizable()
+            .scaledToFit()
+            .frame(height: height, alignment: .leading)
+            .accessibilityLabel("RootPulse Solutions")
+    }
+}
+
 struct AppCanvas: View {
     var body: some View {
         ZStack(alignment: .top) {
